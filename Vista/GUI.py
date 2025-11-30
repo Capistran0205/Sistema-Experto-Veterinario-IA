@@ -33,7 +33,7 @@ class VeterinarioGUI:
         # Intentar cargar la imagen de fondo desde varias ubicaciones relativas conocidas.
         # Si no se encuentra, usar un color de fondo como fallback.
         candidates = [
-            os.path.join(os.path.dirname(os.path.dirname(__file__)), 'SRC', 'Images', 'FondoProyecto.png')
+            os.path.join(os.path.dirname(os.path.dirname(__file__)), 'SRC', 'Images', 'FondoProyecto(1).png')
         ]
         imagen_path = None
         for p in candidates:
@@ -71,6 +71,18 @@ class VeterinarioGUI:
             self.background_label = Label(self.root, bg='#FFFFFF')
             self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
+        # Asignar icon a aplicación
+        # Ruta del icon
+        icon_path = None
+        icon_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'SRC', 'Images', 'Icon.ico')
+        icon = tk.PhotoImage(icon_path)
+        # Aplicar
+        if icon:
+            try:
+                self.root.iconbitmap(icon)
+            except AttributeError:
+                print("Error al cargar el icon")
+
     def construir_interfaz(self):
         # Etiqueta de título
         titulo_label = Label(self.root, text="SISTEMA EXPERTO TU BUEN AMIGO EL VETERINARIO", font=("Courier New", 14), bg="#FFFFFF", border=1, relief="groove")
@@ -88,7 +100,7 @@ class VeterinarioGUI:
         """Recolecta todos los datos de la mascota de forma encadenada"""
         # Inicializar variables de instancia para almacenar los datos temporalmente
         self.temp_nombre = None
-        self.temp_especie = None
+        # self.temp_especie = None
         self.temp_edad = None
         self.temp_sexo = None
         self.temp_castrado = None
@@ -96,6 +108,7 @@ class VeterinarioGUI:
         # Iniciar la cadena de ventanas
         self.tomar_nombre_mascota()
 
+    # Función para tomar nombre de la mascota
     def tomar_nombre_mascota(self):
         """Crear subventana para ingresar el nombre de la mascota"""
         self.subventana = tk.Toplevel(self.root)
@@ -131,7 +144,7 @@ class VeterinarioGUI:
             self.temp_nombre = nombre
             self.subventana.destroy()
             # Abrir siguiente ventana
-            self.tomar_especie_mascota()
+            self.tomar_edad_mascota()
         # Botones Confirmar y Cancelar
         btn_frame = tk.Frame(content, bg="#30b1ae")
         btn_frame.pack(pady=(18,0))
@@ -224,7 +237,7 @@ class VeterinarioGUI:
                 # Placeholder con emoji
                 placeholder = Label(columna, 
                                 text="🐾", 
-                                font=("Arial", 50),
+                                font=("Courier New", 50),
                                 bg="#2a9996",
                                 width=4,
                                 height=2,
@@ -259,7 +272,7 @@ class VeterinarioGUI:
                 messagebox.showwarning("Entrada no válida", 
                                     "Por favor seleccione el sexo de la mascota.")
                 return
-            self.temp_especie = especie_var.get()
+            # self.temp_especie = especie_var.get()
             self.subventana.destroy()
             # Abrir siguiente ventana
             self.tomar_edad_mascota()
@@ -277,6 +290,7 @@ class VeterinarioGUI:
                             borderwidth=3)
         btn_confirmar.pack(pady=(20, 0))
 
+    # Función para tomar edad
     def tomar_edad_mascota(self):
         """Toma la edad de la mascota usando una interfaz visual con categorías y RadioButtons"""
         self.subventana = tk.Toplevel(self.root)
@@ -312,9 +326,9 @@ class VeterinarioGUI:
         
         # Rutas e información de las categorías
         categorias = [
-            ('PerritoGatito.webp', 'Menor a 1 año', 'Menor a 1 año', (150, 180, 150)),
-            ('PerroGatoAdulto.jpg', 'Entre 1 a 5\naños', 'Entre 1 a 5 años', (180, 150, 120)),
-            ('PerroGatoSenior.jpeg', 'Mayor a 5 años', 'Mayor a 5 años', (150, 150, 180))
+            ('Gatito.png', 'Menor a 1 año', 'Menor a 1 año', (150, 180, 150)),
+            ('GatoAdulto.png', 'Entre 1 a 5\naños', 'Entre 1 a 5 años', (180, 150, 120)),
+            ('GatoSenior.png', 'Mayor a 5 años', 'Mayor a 5 años', (150, 150, 180))
         ]
         
         for nombre_img, texto, edad, color_placeholder in categorias:
@@ -344,7 +358,7 @@ class VeterinarioGUI:
                 
             except Exception as e:
                 print(f"No se pudo cargar imagen {nombre_img}: {e}")
-                placeholder = Label(columna, text="🐾", font=("Arial", 30), 
+                placeholder = Label(columna, text="🐾", font=("Courier New", 30), 
                                 bg="#2a9996", width=8, height=3, 
                                 borderwidth=2, relief="solid")
                 placeholder.pack(pady=(0, 10))
@@ -383,6 +397,7 @@ class VeterinarioGUI:
                             command=confirmar_edad)
         btn_confirmar.pack(pady=(15, 0))
 
+    # Función para tomar sexo
     def tomar_sexo_mascota(self):
         """Toma el sexo de la mascota usando una subventana con imágenes visuales"""
         self.subventana = tk.Toplevel(self.root)
@@ -465,7 +480,7 @@ class VeterinarioGUI:
                 # Placeholder con emoji
                 placeholder = Label(columna, 
                                 text="🐾", 
-                                font=("Arial", 50),
+                                font=("Courier New", 50),
                                 bg="#2a9996",
                                 width=4,
                                 height=2,
@@ -517,7 +532,7 @@ class VeterinarioGUI:
                             relief="raised",
                             borderwidth=3)
         btn_confirmar.pack(pady=(20, 0))
-
+    # Función para tomar castración
     def tomar_castracion_mascota(self):
         """Toma el sexo de la mascota usando una subventana con imágenes visuales"""
         self.subventana = tk.Toplevel(self.root)
@@ -601,7 +616,7 @@ class VeterinarioGUI:
                 # Placeholder con emoji
                 placeholder = Label(columna, 
                                 text="🐾", 
-                                font=("Arial", 50),
+                                font=("Courier New", 50),
                                 bg="#2a9996",
                                 width=4,
                                 height=2,
@@ -636,10 +651,11 @@ class VeterinarioGUI:
                 messagebox.showwarning("Entrada no válida", 
                                     "Por favor seleccione el sexo de la mascota.")
                 return
-            self.temp_castrado = castraccion_var
+            self.temp_castrado = castraccion
             self.subventana.destroy()
             # Abrir siguiente ventana
             self.finalizar_datos_mascota()
+            self.capturar_sintomas()
         
         # Botón confirmar
         btn_confirmar = Button(content, 
@@ -653,13 +669,13 @@ class VeterinarioGUI:
                             relief="raised",
                             borderwidth=3)
         btn_confirmar.pack(pady=(20, 0))
-
+    # Finalizar recolección de datos
     def finalizar_datos_mascota(self):
         """Crea la instancia de Mascota con todos los datos recolectados"""
         try:
             mascota = Mascota(
                 self.temp_nombre,
-                self.temp_especie,
+                # self.temp_especie,
                 self.temp_edad,
                 self.temp_sexo,
                 self.temp_castrado
@@ -671,15 +687,15 @@ class VeterinarioGUI:
             messagebox.showinfo(
                 "Éxito", 
                 f"¡Datos de {self.temp_nombre} guardados correctamente!\n\n"
-                f"Especie: {self.temp_especie}\n"
+                # f"Especie: {self.temp_especie}\n"
                 f"Edad: {self.temp_edad}\n"
                 f"Sexo: {self.temp_sexo}\n"
-                f"Castrado: {'Sí' if self.temp_castrado else 'No'}"
+                f"Castrado: {self.temp_castrado}"
             )
             
             # Limpiar variables temporales
             self.temp_nombre = None
-            self.temp_especie = None
+            # self.temp_especie = None
             self.temp_edad = None
             self.temp_sexo = None
             self.temp_castrado = None
@@ -690,7 +706,7 @@ class VeterinarioGUI:
             print(f"Error al crear la mascota: {e}")
             messagebox.showerror("Error", f"No se pudo crear la mascota: {e}")
             return None
-
+    # Cancelar proceso
     def cancelar_proceso(self):
         """Cancela el proceso de recolección de datos"""
         if messagebox.askyesno("Cancelar", "¿Está seguro de que desea cancelar el proceso?"):
@@ -698,10 +714,81 @@ class VeterinarioGUI:
                 self.subventana.destroy()
             # Limpiar variables temporales
             self.temp_nombre = None
-            self.temp_especie = None
+            # self.temp_especie = None
             self.temp_edad = None
             self.temp_sexo = None
             self.temp_castrado = None
+
+    def capturar_sintomas(self):
+        self.subventana = tk.Toplevel(self.root)
+        self.subventana.title("Captura de Síntomas")
+        self.subventana.configure(bg="#30b1ae") # Color de fondo de la ventana
+
+        # --- Centrar Ventana ---
+        window_width = 600 # Ancho ajustado para ser más compacto
+        window_height = 550 # Altura ajustada
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        x = (screen_width // 2) - (window_width // 2)
+        y = (screen_height // 2) - (window_height // 2)
+        self.subventana.geometry(f"{window_width}x{window_height}+{x}+{y}")
+        self.subventana.resizable(False, False)
+
+        # --- Frame Principal (el "recuadro" azul verdoso oscuro del diseño original) ---
+        # Este frame contendrá todos los demás elementos y tendrá un padding
+        # para crear el margen interior.
+        main_frame = tk.Frame(self.subventana, bg="#20B2AA", bd=5, relief="raised")
+        main_frame.pack(pady=20, padx=20, fill="both", expand=True) # Margen de la ventana al frame
+
+        # --- Sección de la pregunta ---
+        # Un frame blanco para contener el label de la pregunta
+        question_container = tk.Frame(main_frame, bg="white", bd=2, relief="sunken")
+        question_container.pack(pady=(15, 10), padx=15, fill="x") # Espaciado superior y entre componentes
+
+        question_label = tk.Label(question_container, text="[Aquí irá el texto de la pregunta]", 
+                                background="white", # Fondo blanco dentro del contenedor
+                                font=("Courier New", 14), # Fuente más legible
+                                wraplength=400, # Ajusta al ancho del frame - padding
+                                justify="left", # Alineación del texto
+                                padx=10, pady=10) # Padding interno del label
+        question_label.pack(fill="x", expand=True) # El label llena el contenedor
+
+        # --- Sección de la Imagen ---
+        # Un frame blanco para contener la imagen
+        image_container = tk.Frame(main_frame, bg="white", bd=2, relief="sunken")
+        # Usa 'fill="both", expand=True' para que ocupe el espacio disponible
+        image_container.pack(pady=10, padx=15, fill="both", expand=True) 
+
+        # Label que mostrará la imagen. Lo guardamos como 'self.image_label'
+        self.image_label = tk.Label(image_container, bg="white")
+        self.image_label.pack(fill="both", expand=True)
+        # Placeholder de texto si no hay imagen cargada
+        self.image_label.config(text="[Imagen del síntoma aquí]", font=("Courier New", 12), fg="gray") 
+        
+        # --- Contenedor para los botones ---
+        # Este frame asegurará que los botones estén centrados y juntos
+        button_container = tk.Frame(main_frame, bg="#20B2AA") # Mismo color de fondo que main_frame
+        button_container.pack(pady=(10, 15)) # Espacio inferior y entre componentes
+
+        # --- Botones de Sí, No y Porqué ---
+        # Los empaquetamos de izquierda a derecha con un padx entre ellos
+        btn_no = Button(button_container, text="No", 
+                        font=("Courier New", 12, "bold"), # Fuente más robusta
+                        bg="#FF0000", fg="black", # Texto blanco en botones de color
+                        width=8, height=2, relief="raised", bd=3) # Borde y relieve
+        btn_no.pack(side="left", padx=(0, 10)) # Sin padx a la izquierda, 10px a la derecha
+
+        btn_porque = Button(button_container, text="¿Por qué?", 
+                            font=("Courier New", 12, "bold"), 
+                            bg="#4169e1", fg="black", # Color azul para 'Por qué'
+                            width=8, height=2, relief="raised", bd=3)
+        btn_porque.pack(side="left", padx=10) # 10px a ambos lados
+
+        btn_si = Button(button_container, text="Sí", 
+                        font=("Courier New", 12, "bold"), 
+                        bg="#28A745", fg="black", # Color verde para 'Sí'
+                        width=8, height=2, relief="raised", bd=3)
+        btn_si.pack(side="left", padx=(10, 0)) # 10px a la izquierda, sin padx a la derecha
 
 # Punto de entrada para ejecutar la interfaz gráfica
 if __name__ == "__main__":

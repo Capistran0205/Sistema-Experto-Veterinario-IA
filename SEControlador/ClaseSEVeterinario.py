@@ -43,3 +43,7 @@ class SEVeterinario:
             list(self.prolog.query("retractall(conocido(_))"))
         except:
             pass
+
+    # Método para indicar el porqué de una pregunta
+    def mostrar_razon(self, pregunta):
+        pass
