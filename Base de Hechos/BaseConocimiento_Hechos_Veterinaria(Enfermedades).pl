@@ -1,11 +1,11 @@
 %---------------------------------ENFERMEDADES (SÍNTOMAS)----------------------------------
-conocimiento('leucemia Felina (FeLV)', 
+conocimiento('Leucemia Felina (FeLV)', 
     ['anemia', 
      'perdida de peso',
      'infecciones recurrentes',
      'linfomas']).
 
-conocimiento('inmunodeficiencia Felina (FIV)', 
+conocimiento('Inmunodeficiencia Felina (FIV)', 
     ['gingivitis', 
      'estomatitis',
      'fiebre recurrente',

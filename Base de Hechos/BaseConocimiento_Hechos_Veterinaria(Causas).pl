@@ -1,12 +1,12 @@
 %---------------------------------ENFERMEDADES (CAUSAS)----------------------------------
-causas('leucemia Felina (FeLV)', 
+causas('Leucemia Felina (FeLV)', 
     ['usar mismos comederos', 
      'contacto con saliva infectada', 
      'acicalamiento mutuo', 
      'mordeduras',
      'transmision madre-crias']).
 
-causas('inmunodeficiencia Felina (FIV)', 
+causas('Inmunodeficiencia Felina (FIV)', 
     ['lentivirus', 
      'mordeduras profundas', 
      'peleas con otros gatos', 
